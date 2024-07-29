@@ -1,0 +1,19 @@
+version: 1
+
+sources:
+  - name: erp
+    description: "Fonte que original os dados raw_adventure_works"
+    database: fea24_6
+    schema: raw_adventure_works 
+    tables:
+      - name: CUSTOMER         
+      - name: PERSON   
+      - name: SALESREASON      
+      - name: SALESPERSON
+      - name: EMPLOYEE   
+      - name: STATEPROVINCE 
+      - name: ADDRESS
+      - name: COUNTRYREGION
+      - name: SALESORDERHEADER 
+      - name: SALESORDERDETAIL
+      - name: PRODUCT
