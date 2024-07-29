@@ -2,27 +2,18 @@ version: 1
 
 sources:
   - name: erp
-    description: "Fonte da onde os dados são gerados"
+    description: "Fonte que original os dados raw_adventure_works"
     database: fea24_6
     schema: raw_adventure_works 
     tables:
-      - name: PERSON
-        description: "tabela de clientes"      
-      - name: SALESREASON     
-        description: "tabela de Motivo da venda"   
+      - name: CUSTOMER         
+      - name: PERSON   
+      - name: SALESREASON      
       - name: SALESPERSON
-        description: "tabela de Vendedor"  
-      - name: EMPLOYEE
-        description: "tabela de funcionario"    
-      - name: STATEPROVINCE
-        description: "tabela de Estados"  
+      - name: EMPLOYEE   
+      - name: STATEPROVINCE 
       - name: ADDRESS
-        description: "tabela de cidades"  
       - name: COUNTRYREGION
-        description: "tabela de Pais  "  
-      - name: SALESORDERHEADER
-        description: "tabela de Data da Venda"  
+      - name: SALESORDERHEADER 
       - name: SALESORDERDETAIL
-        description: "tabela de detalhes do produto"  
       - name: PRODUCT
-        description: "tabela de Produto"  
