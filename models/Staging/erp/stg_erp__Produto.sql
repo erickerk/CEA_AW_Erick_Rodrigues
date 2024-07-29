@@ -1,34 +1,52 @@
-with 
-    tabela1 as (
-        select 
-         cast(SALESORDERID as int) as ORDER_ID
-        , cast(SALESORDERDETAILID as varchar) as DETAIL_ID
-        , cast(CARRIERTRACKINGNUMBER as varchar) as TRACKING_NUMBER
-        , cast(ORDERQTY as INT) as QTY
-        , cast(PRODUCTID as INT) as PRODUCT_ID
-        , cast(SPECIALOFFERID as INT) as SPECIAL_OFFERID
-        , cast(UNITPRICE as INT) as UNIT_PRICE
-        , cast(UNITPRICEDISCOUNT as float) as PRICE_DISCOUNT
-        , cast(ROWGUID as varchar) as ROW_GUID
-        , cast(MODIFIEDDATE as date) as MODIFIED_DATE
-        from {{ source('erp', 'SALESORDERDETAIL') }}
-    ),
-    tabela2 as (
-        select 
-             CAST(PRODUCTID as int) as PRODUCT_ID
-            ,CAST(NAME as varchar) as NAME
-            ,CAST(PRODUCTNUMBER as varchar) as PRODUCTNUMBER
-            ,CAST(MAKEFLAG as varchar) as MAKE_FLAG
-            ,CAST(COLOR as varchar) as COLOR
-            ,CAST(SAFETYSTOCKLEVEL as INT) as STOCK_LEVEL
-            ,cast(SIZE AS varchar) AS SIZE 
-            ,cast(STANDARDCOST as float) as STANDARD_COST
-            ,cast( PRODUCTSUBCATEGORYID as int) as SUBCATEGORYID 
-            ,cast( PRODUCTMODELID as varchar) as PRODUCT_MODELID
-        
-        from {{ source('erp', 'PRODUCT') }}
-    )
+WITH tabela1 AS (
+    SELECT 
+        CAST(SALESORDERID AS INT) AS ORDER_ID,
+        CAST(SALESORDERDETAILID AS VARCHAR) AS DETAIL_ID,
+        CAST(CARRIERTRACKINGNUMBER AS VARCHAR) AS TRACKING_NUMBER,
+        CAST(ORDERQTY AS INT) AS QTY,
+        CAST(PRODUCTID AS INT) AS PRODUCT_ID,
+        CAST(SPECIALOFFERID AS INT) AS SPECIAL_OFFERID,
+        CAST(UNITPRICE AS INT) AS UNIT_PRICE,
+        CAST(UNITPRICEDISCOUNT AS FLOAT) AS PRICE_DISCOUNT,
+        CAST(ROWGUID AS VARCHAR) AS ROW_GUID,
+        CAST(MODIFIEDDATE AS DATE) AS MODIFIED_DATE
+    FROM {{ source('erp', 'SALESORDERDETAIL') }}
+),
+tabela2 AS (
+    SELECT 
+        CAST(PRODUCTID AS INT) AS PRODUCT_ID,
+        CAST(NAME AS VARCHAR) AS NAME,
+        CAST(PRODUCTNUMBER AS VARCHAR) AS PRODUCTNUMBER,
+        CAST(MAKEFLAG AS VARCHAR) AS MAKE_FLAG,
+        CAST(COLOR AS VARCHAR) AS COLOR,
+        CAST(SAFETYSTOCKLEVEL AS INT) AS STOCK_LEVEL,
+        CAST(SIZE AS VARCHAR) AS SIZE,
+        CAST(STANDARDCOST AS FLOAT) AS STANDARD_COST,
+        CAST(PRODUCTSUBCATEGORYID AS INT) AS SUBCATEGORYID,
+        CAST(PRODUCTMODELID AS VARCHAR) AS PRODUCT_MODELID
+    FROM {{ source('erp', 'PRODUCT') }}
+)
 
-select *
-from tabela1 
-LEFT JOIN tabela2  on tabela2.PRODUCT_ID = tabela1.PRODUCT_ID
+SELECT 
+    tabela1.ORDER_ID,
+    tabela1.DETAIL_ID,
+    tabela1.TRACKING_NUMBER,
+    tabela1.QTY,
+    tabela1.PRODUCT_ID AS ORDER_PRODUCT_ID, -- Renomeado
+    tabela1.SPECIAL_OFFERID,
+    tabela1.UNIT_PRICE,
+    tabela1.PRICE_DISCOUNT,
+    tabela1.ROW_GUID,
+    tabela1.MODIFIED_DATE,
+    tabela2.PRODUCT_ID AS PRODUCT_PRODUCT_ID, -- Renomeado
+    tabela2.NAME,
+    tabela2.PRODUCTNUMBER,
+    tabela2.MAKE_FLAG,
+    tabela2.COLOR,
+    tabela2.STOCK_LEVEL,
+    tabela2.SIZE,
+    tabela2.STANDARD_COST,
+    tabela2.SUBCATEGORYID,
+    tabela2.PRODUCT_MODELID
+FROM tabela1 
+LEFT JOIN tabela2 ON tabela1.PRODUCT_ID = tabela2.PRODUCT_ID
