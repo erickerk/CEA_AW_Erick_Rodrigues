@@ -1,14 +1,14 @@
 with 
-    rennamed as (
-        select * 
-        , cast(CUSTOMERID as int) as ID
-        , cast(PERSONID as int) as ID_personal
-        , cast(STOREID as int) as ID_historico
-        , cast(TERRITORYID as int) as TERRITORY_ID
-        , cast(ROWGUID as varchar ) as ROW_GUID
-        , cast(MODIFIEDDATE as date) as data_mod
+    renamed as (
+        select 
+            cast(customerid as int) as id,
+            cast(personid as int) as id_personal,
+            cast(storeid as int) as id_historico,
+            cast(territoryid as int) as territory_id,
+            cast(rowguid as varchar) as row_guid,
+            cast(modifieddate as date) as data_mod
         from {{ source('erp', 'CUSTOMER') }}
     )
 
 select *
-from rennamed
+from renamed

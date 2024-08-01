@@ -1,52 +1,52 @@
-WITH tabela1 AS (
-    SELECT 
-        CAST(SALESORDERID AS INT) AS ORDER_ID,
-        CAST(SALESORDERDETAILID AS VARCHAR) AS DETAIL_ID,
-        CAST(CARRIERTRACKINGNUMBER AS VARCHAR) AS TRACKING_NUMBER,
-        CAST(ORDERQTY AS INT) AS QTY,
-        CAST(PRODUCTID AS INT) AS PRODUCT_ID,
-        CAST(SPECIALOFFERID AS INT) AS SPECIAL_OFFERID,
-        CAST(UNITPRICE AS INT) AS UNIT_PRICE,
-        CAST(UNITPRICEDISCOUNT AS FLOAT) AS PRICE_DISCOUNT,
-        CAST(ROWGUID AS VARCHAR) AS ROW_GUID,
-        CAST(MODIFIEDDATE AS DATE) AS MODIFIED_DATE
-    FROM {{ source('erp', 'SALESORDERDETAIL') }}
+with tabela1 as (
+    select 
+        cast(salesorderid as int) as order_id,
+        cast(salesorderdetailid as varchar) as detail_id,
+        cast(carriertrackingnumber as varchar) as tracking_number,
+        cast(orderqty as int) as qty,
+        cast(productid as int) as product_id,
+        cast(specialofferid as int) as special_offer_id,
+        cast(unitprice as int) as unit_price,
+        cast(unitpricediscount as float) as price_discount,
+        cast(rowguid as varchar) as row_guid,
+        cast(modifieddate as date) as modified_date
+    from {{ source('erp', 'SALESORDERDETAIL') }}
 ),
-tabela2 AS (
-    SELECT 
-        CAST(PRODUCTID AS INT) AS PRODUCT_ID,
-        CAST(NAME AS VARCHAR) AS NAME,
-        CAST(PRODUCTNUMBER AS VARCHAR) AS PRODUCTNUMBER,
-        CAST(MAKEFLAG AS VARCHAR) AS MAKE_FLAG,
-        CAST(COLOR AS VARCHAR) AS COLOR,
-        CAST(SAFETYSTOCKLEVEL AS INT) AS STOCK_LEVEL,
-        CAST(SIZE AS VARCHAR) AS SIZE,
-        CAST(STANDARDCOST AS FLOAT) AS STANDARD_COST,
-        CAST(PRODUCTSUBCATEGORYID AS INT) AS SUBCATEGORYID,
-        CAST(PRODUCTMODELID AS VARCHAR) AS PRODUCT_MODELID
-    FROM {{ source('erp', 'PRODUCT') }}
+tabela2 as (
+    select 
+        cast(productid as int) as product_id,
+        cast(name as varchar) as name,
+        cast(productnumber as varchar) as product_number,
+        cast(makeflag as varchar) as make_flag,
+        cast(color as varchar) as color,
+        cast(safetystocklevel as int) as stock_level,
+        cast(size as varchar) as size,
+        cast(standardcost as float) as standard_cost,
+        cast(productsubcategoryid as int) as subcategory_id,
+        cast(productmodelid as varchar) as product_model_id
+    from {{ source('erp', 'PRODUCT') }}
 )
 
-SELECT 
-    tabela1.ORDER_ID,
-    tabela1.DETAIL_ID,
-    tabela1.TRACKING_NUMBER,
-    tabela1.QTY,
-    tabela1.PRODUCT_ID AS ORDER_PRODUCT_ID, -- Renomeado
-    tabela1.SPECIAL_OFFERID,
-    tabela1.UNIT_PRICE,
-    tabela1.PRICE_DISCOUNT,
-    tabela1.ROW_GUID,
-    tabela1.MODIFIED_DATE,
-    tabela2.PRODUCT_ID AS PRODUCT_PRODUCT_ID, -- Renomeado
-    tabela2.NAME,
-    tabela2.PRODUCTNUMBER,
-    tabela2.MAKE_FLAG,
-    tabela2.COLOR,
-    tabela2.STOCK_LEVEL,
-    tabela2.SIZE,
-    tabela2.STANDARD_COST,
-    tabela2.SUBCATEGORYID,
-    tabela2.PRODUCT_MODELID
-FROM tabela1 
-LEFT JOIN tabela2 ON tabela1.PRODUCT_ID = tabela2.PRODUCT_ID
+select 
+    tabela1.order_id,
+    tabela1.detail_id,
+    tabela1.tracking_number,
+    tabela1.qty,
+    tabela1.product_id as order_product_id, 
+    tabela1.special_offer_id,
+    tabela1.unit_price,
+    tabela1.price_discount,
+    tabela1.row_guid,
+    tabela1.modified_date,
+    tabela2.product_id as product_product_id, 
+    tabela2.name,
+    tabela2.product_number,
+    tabela2.make_flag,
+    tabela2.color,
+    tabela2.stock_level,
+    tabela2.size,
+    tabela2.standard_cost,
+    tabela2.subcategory_id,
+    tabela2.product_model_id
+from tabela1 
+left join tabela2 on tabela1.product_id = tabela2.product_id

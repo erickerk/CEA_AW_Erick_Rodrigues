@@ -1,49 +1,49 @@
-WITH 
-    tabela2 AS (
-        SELECT 
-            CAST(BUSINESSENTITYID AS INT) AS BUSINESS_ENTITY_ID,
-            CAST(PERSONTYPE AS VARCHAR(2)) AS PERSON_TYPE,
-            CAST(NAMESTYLE AS varchar) AS NAME_STYLE,
-            CAST(TITLE AS VARCHAR(50)) AS TITLE,
-            CAST(FIRSTNAME AS VARCHAR(50)) AS FIRST_NAME,
-            CAST(MIDDLENAME AS VARCHAR(50)) AS MIDDLE_NAME,
-            CAST(LASTNAME AS VARCHAR(50)) AS LAST_NAME,
-            CAST(SUFFIX AS VARCHAR(10)) AS SUFFIX,
-            CAST(EMAILPROMOTION AS INT) AS EMAIL_PROMOTION
-        FROM {{ source('erp', 'PERSON') }}
+with 
+    tabela2 as (
+        select 
+            cast(businessentityid as int) as business_entity_id,
+            cast(persontype as varchar(2)) as person_type,
+            cast(namestyle as varchar) as name_style,
+            cast(title as varchar(50)) as title,
+            cast(firstname as varchar(50)) as first_name,
+            cast(middlename as varchar(50)) as middle_name,
+            cast(lastname as varchar(50)) as last_name,
+            cast(suffix as varchar(10)) as suffix,
+            cast(emailpromotion as int) as email_promotion
+        from {{ source('erp', 'PERSON') }}
     ),
-    tabela1 AS (
-        SELECT 
-            CAST(BUSINESSENTITYID AS INT) AS BUSINESS_ENTITY_ID,
-            CAST(TERRITORYID AS INT) AS TERRITORY_ID,
-            CAST(SALESQUOTA AS DECIMAL(18,2)) AS SALES_QUOTA,
-            CAST(BONUS AS DECIMAL(18,2)) AS BONUS,
-            CAST(COMMISSIONPCT AS DECIMAL(5,4)) AS COMMISSION_PCT,
-            CAST(SALESYTD AS DECIMAL(18,2)) AS SALES_YTD,
-            CAST(SALESLASTYEAR AS DECIMAL(18,2)) AS SALES_LAST_YEAR,
-            CAST(ROWGUID AS VARCHAR(36)) AS ROW_GUID,
-            CAST(MODIFIEDDATE AS DATETIME) AS MODIFIED_DATE
-        FROM {{ source('erp', 'SALESPERSON') }}
+    tabela1 as (
+        select 
+            cast(businessentityid as int) as business_entity_id,
+            cast(territoryid as int) as territory_id,
+            cast(salesquota as decimal(18,2)) as sales_quota,
+            cast(bonus as decimal(18,2)) as bonus,
+            cast(commissionpct as decimal(5,4)) as commission_pct,
+            cast(salesytd as decimal(18,2)) as sales_ytd,
+            cast(saleslastyear as decimal(18,2)) as sales_last_year,
+            cast(rowguid as varchar(36)) as row_guid,
+            cast(modifieddate as datetime) as modified_date
+        from {{ source('erp', 'SALESPERSON') }}
     )
 
-SELECT 
-    t2.BUSINESS_ENTITY_ID AS PERSON_BUSINESS_ENTITY_ID,  -- Renomeado para evitar duplicidade
-    t2.PERSON_TYPE,
-    t2.NAME_STYLE,
-    t2.TITLE,
-    t2.FIRST_NAME,
-    t2.MIDDLE_NAME,
-    t2.LAST_NAME,
-    t2.SUFFIX,
-    t2.EMAIL_PROMOTION,
-    t1.TERRITORY_ID,
-    t1.SALES_QUOTA,
-    t1.BONUS,
-    t1.COMMISSION_PCT,
-    t1.SALES_YTD,
-    t1.SALES_LAST_YEAR,
-    t1.ROW_GUID,
-    t1.MODIFIED_DATE
-FROM tabela2 t2
-JOIN tabela1 t1 
-    ON t2.BUSINESS_ENTITY_ID = t1.BUSINESS_ENTITY_ID
+select 
+    t2.business_entity_id as person_business_entity_id,  -- Renomeado para evitar duplicidade
+    t2.person_type,
+    t2.name_style,
+    t2.title,
+    t2.first_name,
+    t2.middle_name,
+    t2.last_name,
+    t2.suffix,
+    t2.email_promotion,
+    t1.territory_id,
+    t1.sales_quota,
+    t1.bonus,
+    t1.commission_pct,
+    t1.sales_ytd,
+    t1.sales_last_year,
+    t1.row_guid,
+    t1.modified_date
+from tabela2 t2
+join tabela1 t1 
+    on t2.business_entity_id = t1.business_entity_id

@@ -1,14 +1,14 @@
 with 
     renamed as (
         select 
-        cast(STATEPROVINCEID AS int) as PROVINCE_ID
-        ,cast(STATEPROVINCECODE AS varchar) as PROVINCE_CODE
-        ,cast(COUNTRYREGIONCODE AS varchar) as REGION_CODE
-        ,cast(ISONLYSTATEPROVINCEFLAG AS varchar) as PROVINCE_FLAG
-        ,cast(NAME AS varchar) as NAME
-        ,cast(TERRITORYID AS int) as TERRITORY_ID
-        ,cast(ROWGUID AS varchar) as ROW_GUID
-        ,cast(MODIFIEDDATE AS date) as MODIFIED_DATE
+          cast(stateprovinceid as int) as province_id,
+          cast(stateprovincecode as varchar) as province_code,
+          cast(countryregioncode as varchar) as region_code,
+          cast(isonlystateprovinceflag as varchar) as province_flag,
+          cast(name as varchar) as name,
+          cast(territoryid as int) as territory_id,
+          cast(rowguid as varchar) as row_guid,
+          cast(modifieddate as date) as modified_date
         from {{ source('erp', 'STATEPROVINCE') }}
     )
 

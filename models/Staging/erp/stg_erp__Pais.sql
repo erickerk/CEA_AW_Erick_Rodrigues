@@ -1,10 +1,11 @@
-WITH 
+with 
     renamed as (
         select 
-        cast(COUNTRYREGIONCODE as varchar) as REGION_CODE
-        ,cast(NAME AS varchar) AS NAME
-        ,cast(MODIFIEDDATE AS date) AS MODIFIED_DATE
+          cast(countryregioncode as varchar) as region_code,
+          cast(name as varchar) as name,
+          cast(modifieddate as date) as modified_date
         from {{ source('erp', 'COUNTRYREGION') }}
     )
-    select *
-    from renamed
+
+select *
+from renamed
