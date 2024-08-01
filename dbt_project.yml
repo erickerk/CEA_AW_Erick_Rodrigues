@@ -29,11 +29,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configure models in specific folders
 models:
   my_new_projectcea_aw_erick_rodrigues:
-    staging:
+    Staging:
       +materialized: view
-    marts:
+    Marts:
       +materialized: table
     Dim:
       +materialized: table
-    fact:
+    Fact:
       +materialized: table
