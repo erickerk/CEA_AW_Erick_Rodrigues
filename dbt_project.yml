@@ -26,14 +26,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# Configure models in specific folders to be materialized as tables
+# Configure models in specific folders
 models:
   my_new_projectcea_aw_erick_rodrigues:
+    staging:
+      +materialized: view
     marts:
       +materialized: table
     Dim:
       +materialized: table
     fact:
       +materialized: table
-
-      
