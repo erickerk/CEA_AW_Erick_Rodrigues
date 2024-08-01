@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_erp__salesorderdetail
+    description: Tabela de detalhes dos pedidos de venda.
+    columns:
+      - name: order_id
+        description: Chave primária da tabela de detalhes dos pedidos de venda.
+        tests:
+          - unique
+          - not_null
+      - name: detail_id
+        description: Identificador único para cada detalhe do pedido.
+        tests:
+          - unique
+          - not_null

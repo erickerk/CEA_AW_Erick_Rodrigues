@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_erp__person
+    description: Tabela de informações de pessoas.
+    columns:
+      - name: business_entity_id
+        description: Chave primária da tabela de pessoas.
+        tests:
+          - unique
+          - not_null

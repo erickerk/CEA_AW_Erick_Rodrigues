@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_erp__sales_reason
+    description: Tabela de motivos de venda.
+    columns:
+      - name: reason_id
+        description: Chave primária da tabela de motivos de venda.
+        tests:
+          - unique
+          - not_null

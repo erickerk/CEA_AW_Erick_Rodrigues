@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_countryregion
+    description: Dimensão das regiões de países na base de dados Northwind.
+    columns:
+      - name: region_code
+        description: Chave primária da tabela de dimensões de regiões de países.
+        tests:
+          - unique
+          - not_null

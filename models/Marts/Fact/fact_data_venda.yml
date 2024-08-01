@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_salesorderheader
+    description: Fatos dos pedidos de venda na base de dados Northwind.
+    columns:
+      - name: ORDERID
+        description: Chave primária da tabela de fatos de pedidos de venda.
+        tests:
+          - unique
+          - not_null

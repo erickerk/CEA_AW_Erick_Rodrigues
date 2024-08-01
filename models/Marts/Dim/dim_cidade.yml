@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_cidade
+    description: Dimensão que contém informações sobre cidades na base de dados Northwind.
+    columns:
+      - name: ADDRESS_ID
+        description: Chave primária da dimensão cidade.
+        tests:
+          - unique
+          - not_null

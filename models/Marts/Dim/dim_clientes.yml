@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_erp__customer
+    description: Tabela de informações de clientes.
+    columns:
+      - name: ID
+        description: Chave primária da tabela de clientes.
+        tests:
+          - unique
+          - not_null
