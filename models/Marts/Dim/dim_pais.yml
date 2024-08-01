@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_countryregion
+  - name: dim_pais
     description: Dimensão das regiões de países na base de dados Northwind.
     columns:
       - name: region_code

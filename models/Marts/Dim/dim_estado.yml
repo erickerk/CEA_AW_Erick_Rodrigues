@@ -1,11 +1,13 @@
 version: 2
 
 models:
-  - name: dim_stateprovince
-    description: Dimensão dos estados e províncias na base de dados Northwind.
+  - name: dim_estado
+    description: Dimensão que contém informações sobre estados na base de dados Northwind.
     columns:
       - name: province_id
-        description: Chave primária da tabela de dimensões de estados e províncias.
+        description: Chave primária da dimensão estado.
         tests:
           - unique
           - not_null
+
+          

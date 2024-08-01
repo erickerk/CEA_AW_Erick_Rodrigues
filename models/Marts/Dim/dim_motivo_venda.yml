@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_erp__sales_reason
+  - name: dim_motivo_venda
     description: Tabela de motivos de venda.
     columns:
       - name: reason_id

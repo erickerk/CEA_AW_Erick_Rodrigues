@@ -1,10 +1,10 @@
 version: 2
 
 models:
-  - name: stg_erp__person
+  - name: dim_vendedor
     description: Tabela de informações de pessoas.
     columns:
-      - name: business_entity_id
+      - name: person_business_entity_id
         description: Chave primária da tabela de pessoas.
         tests:
           - unique

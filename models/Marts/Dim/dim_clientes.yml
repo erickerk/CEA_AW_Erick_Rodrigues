@@ -1,10 +1,10 @@
 version: 2
 
 models:
-  - name: stg_erp__customer
-    description: Tabela de informações de clientes.
+  - name: dim_clientes
+    description: Tabela de informações de clientes
     columns:
-      - name: ID
+      - name: id
         description: Chave primária da tabela de clientes.
         tests:
           - unique
