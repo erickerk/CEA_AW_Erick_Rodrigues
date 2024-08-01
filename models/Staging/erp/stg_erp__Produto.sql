@@ -3,10 +3,10 @@ with tabela1 as (
         cast(salesorderid as int) as order_id,
         cast(salesorderdetailid as varchar) as detail_id,
         cast(carriertrackingnumber as varchar) as tracking_number,
-        cast(orderqty as int) as qty,
+        cast(orderqty as float) as qty,
         cast(productid as int) as product_id,
         cast(specialofferid as int) as special_offer_id,
-        cast(unitprice as int) as unit_price,
+        cast(unitprice as float) as unit_price,
         cast(unitpricediscount as float) as price_discount,
         cast(rowguid as varchar) as row_guid,
         cast(modifieddate as date) as modified_date

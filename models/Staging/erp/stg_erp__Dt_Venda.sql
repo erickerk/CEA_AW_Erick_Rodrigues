@@ -22,3 +22,5 @@ with
 
 select *
 from renamed
+
+
