@@ -24,7 +24,3 @@ with
 
 select *
 from renamed
-
-
-select * 
-from {{ source('erp', 'SALESORDERHEADER') }}
