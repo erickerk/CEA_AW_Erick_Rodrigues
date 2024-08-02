@@ -1,8 +1,8 @@
 with    
-    cliente as (
+    nome as (
         select *
         from {{ ref('stg_erp_nome_cliente') }}
     )
 
 select *
-from cliente
+from nome
