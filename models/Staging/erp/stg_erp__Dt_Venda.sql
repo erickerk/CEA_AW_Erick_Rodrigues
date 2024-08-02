@@ -17,6 +17,7 @@ with
           cast(taxamt as int) as tax_amt,
           cast(freight as int) as freight,
           cast(totaldue as int) as total_due
+          cast(salesorderid as int) as sales_order_id
         from {{ source('erp', 'SALESORDERHEADER') }}
     )
 
@@ -24,3 +25,5 @@ select *
 from renamed
 
 
+select *
+from  {{ source('erp', 'SALESORDERHEADER') }}
