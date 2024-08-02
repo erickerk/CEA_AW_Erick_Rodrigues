@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: sales_order_header_sales_reason
+    description: Tabela de relação entre pedidos de vendas e razões de vendas, incluindo ID de pedido e ID de razão.
+    columns:
+      - name: sales_order_id
+        description: Identificador único do pedido de venda.
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_reason_id
+        description: Identificador da razão de venda associada ao pedido.
+        tests:
+          - not_null

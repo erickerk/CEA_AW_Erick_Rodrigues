@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: credit_card
+    description: Tabela de cartões de crédito com informações detalhadas, incluindo tipo de cartão, número, data de expiração, e data de modificação.
+    columns:
+      - name: credit_card_id
+        description: Identificador único do cartão de crédito.
+        tests:
+          - unique
+          - not_null
+
+   
