@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: fact_store
+    description: Fato contendo informações sobre as lojas, associados aos representantes de vendas.
+    columns:
+      - name: business_entity_id
+        description: Identificador único da entidade de negócios.
+        tests:
+          - unique
+          - not_null
+
+
+    

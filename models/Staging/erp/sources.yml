@@ -18,4 +18,6 @@ sources:
       - name: SALESORDERDETAIL
       - name: PRODUCT
       - name: SALESORDERHEADERSALESREASON
-      - name: CREDITCARD
+      - name: CREDITCARD      
+      - name: STORE
+      
