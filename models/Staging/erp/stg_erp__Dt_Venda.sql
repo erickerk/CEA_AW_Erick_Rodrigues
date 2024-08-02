@@ -16,8 +16,9 @@ with
           cast(subtotal as int) as sub_total,
           cast(taxamt as int) as tax_amt,
           cast(freight as int) as freight,
-          cast(totaldue as int) as total_due
-          cast(salesorderid as int) as sales_order_id
+          cast(totaldue as int) as total_due,
+          cast(salesorderid as int) as sales_order_id,
+          cast(creditcardid as int) as credit_card_id
         from {{ source('erp', 'SALESORDERHEADER') }}
     )
 
@@ -25,5 +26,5 @@ select *
 from renamed
 
 
-select *
-from  {{ source('erp', 'SALESORDERHEADER') }}
+select * 
+from {{ source('erp', 'SALESORDERHEADER') }}
