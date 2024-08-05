@@ -9,7 +9,7 @@ with
             cast(modifieddate as date) as data_mod
         from {{ source('erp', 'CUSTOMER') }}
     ),
-    name as (
+    person as (
         select
             cast(businessentityid as int) as business_entity_id,
             cast(persontype as varchar) as person_type,
@@ -27,6 +27,7 @@ with
         from {{ source('erp', 'PERSON') }}
     )
 
+
 select
     client.customer_id,
     client.id_personal,
@@ -34,18 +35,19 @@ select
     client.territory_id,
     client.row_guid as client_row_guid,
     client.data_mod as client_data_mod,
-    name.business_entity_id,
-    name.person_type,
-    name.name_style,
-    name.title,
-    name.first_name,
-    name.middle_name,
-    name.last_name,
-    name.suffix,
-    name.email_promotion,
-    name.additional_contact_info,
-    name.demographics,
-    name.row_guid as name_row_guid,
-    name.modified_date as name_modified_date
+    person.business_entity_id,
+    person.person_type,
+    person.name_style,
+    person.title,
+   person.first_name, 
+   person.middle_name,
+    person.last_name,
+    person.suffix,
+    person.email_promotion,
+    person.additional_contact_info,
+    person.demographics,
+    person.row_guid as name_row_guid,
+    person.modified_date as name_modified_date
 from client
-left join name on client.customer_id = name.business_entity_id
+join person on client.customer_id = person.business_entity_id
+
